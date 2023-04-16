@@ -1,0 +1,10 @@
+{% load static %}
+<ul>
+    <li>
+    Author: {{ comment.author.username }}
+    </li>
+    <li>
+    Publcation date: {{ comment.pub_date|date:"d E Y" }}
+    </li>
+</ul>
+<p>{{ comment.text }}</p>

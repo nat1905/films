@@ -1,0 +1,55 @@
+{% load static %}
+<nav class="navbar navbar-light" style="background-color: #fae1dd">
+<div class="container">
+    <a class="navbar-brand" href="{% url 'films:index' %}">    
+    <span style="color:#6b705c">TheBook</span>
+    </a>
+</div>
+{% with request.resolver_match.view_name as view_name %}      
+      <ul class="nav nav-pills">
+        
+
+        {% if request.user.is_authenticated %}
+        
+        <li class="nav-item" > 
+          <a class="nav-link" style="color:#4a7c59" href="{% url 'films:comment_create' %}">New comment</a>
+        </li>
+
+        <li class="nav-item"> 
+          <a class="nav-link" style="color:#4a7c59" href="{% url 'films:film_create' %}">New film</a>
+        </li>
+
+        <li class="nav-item"> 
+          <a class="nav-link" style="color:#4a7c59" href="{% url 'films:films' %}">All films</a>
+        </li>
+        
+        <li class="nav-item"> 
+          <a class="nav-link link-light 
+          {% if view_name  == 'users:logout' %}
+        active
+        {% endif %}"
+          href="{% url 'users:logout' %}">Log out</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" style="color:#4a7c59" href="{% url 'films:profile'  user.username %}">User: {{ user.username }}</a>
+        </li>
+        {% else %}
+        <li class="nav-item"> 
+          <a class="nav-link link-light
+          {% if view_name  == 'users:login' %}
+          active
+        {% endif %}"
+          href="{% url 'users:login' %}">Log in</a>
+        </li>
+        <li class="nav-item"> 
+          <a class="nav-link link-light
+          {% if view_name  == 'users:signup' %}
+        active
+         {% endif %}"
+          href="{% url 'users:signup' %}">Sign up</a>
+        </li>
+        {% endif %}
+        {% endwith %}
+      </ul>      
+</nav>   

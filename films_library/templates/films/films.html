@@ -1,0 +1,19 @@
+<!-- templates/posts/group_list.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+{{ content }}
+{% for film in page_obj %}
+<p>{{ film.title }}.</p>
+<p>{{ film.director }}.</p>
+  
+  <p>
+    <a href="{% url 'films:film_list' film.pk %}">
+      Film's details
+    </a>
+  </p>
+{% if not forloop.last %}<hr>{% endif %}
+{% endfor %}
+{% include '../includes/paginator.html' %}
+{% endblock %} 

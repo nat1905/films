@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+{{ content }}
+
+<!-- group name -->
+<h1>{{ film.title }}.</h1>
+<h1>{{ film.director }}.</h1>
+
+<p>
+    <!-- group description -->
+    {{ film.description }}
+</p>      
+
+
+<hr>
+        
+{% for comment in page_obj  %}
+{% include 'includes/author_date_post.html' %} 
+{% if not forloop.last %}<hr>{% endif %}
+{% endfor %}
+{% include '../includes/paginator.html' %}
+{% endblock %} 

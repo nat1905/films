@@ -1,0 +1,25 @@
+<!-- templates/posts/group_list.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+{{ content }}
+{% for comment in page_obj %}
+{% include 'includes/author_date_post.html' %}  
+ 
+
+  {% if comment.film %}   
+    <a href="{% url 'films:film_list' comment.film.pk %}">
+      #{{ comment.film.title }}
+    </a>
+  {% endif %}
+
+  <p>
+    <a href="{% url 'films:comment_detail' comment.pk %}">
+      подробная информация
+    </a>
+  </p>
+{% if not forloop.last %}<hr>{% endif %}
+{% endfor %}
+{% include '../includes/paginator.html' %}
+{% endblock %} 

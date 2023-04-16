@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{comment|truncatechars:30 }}{% endblock %}
+{% block content %}
+<div class="row">
+    <aside class="col-12 col-md-3">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          Publication date: {{ comment.pub_date|date:"d E Y" }} 
+        </li>           
+        
+        </li>
+        <li class="list-group-item">
+          Author: <a href="{% url 'films:profile' comment.author.username %}">
+            {{ comment.author.get_username }}
+          </a>
+        </li>
+        
+        
+      </ul>
+    </aside>
+    <article class="col-12 col-md-9">
+        {{ comment.text }}
+    </article>
+  </div> 
+
+{% endblock %}
