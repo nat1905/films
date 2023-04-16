@@ -3,7 +3,7 @@
 """
 from django.contrib import admin
 
-from .models import Comment, Film
+from .models import Review, Film
 
 
 class FilmAdmin(admin.ModelAdmin):
@@ -13,7 +13,7 @@ class FilmAdmin(admin.ModelAdmin):
     empty_value_display = '-пусто-'
 
 
-class CommentAdmin(admin.ModelAdmin):
+class ReviewAdmin(admin.ModelAdmin):
     list_display = ('pk', 'text', 'pub_date', 'author',  'film')
     list_editable = ('film',)
     search_fields = ('text',)
@@ -23,4 +23,4 @@ class CommentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Film, FilmAdmin)
-admin.site.register(Comment, CommentAdmin)
+admin.site.register(Review, ReviewAdmin)

@@ -2,10 +2,10 @@
 {% load static %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
-<h1>All comments of user: {{ author }}</h1>
+<h1>All reviews of user: {{ author }}</h1>
            
 
-{% for comment in page_obj %}
+{% for review in page_obj %}
 {% include 'includes/author_date_post.html' %} 
 
 {% if not forloop.last %}<hr>{% endif %}

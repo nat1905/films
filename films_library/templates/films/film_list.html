@@ -4,19 +4,22 @@
 {% block content %}
 {{ content }}
 
-<!-- group name -->
-<h1>{{ film.title }}.</h1>
-<h1>{{ film.director }}.</h1>
 
-<p>
-    <!-- group description -->
+<h3>Title: {{ film.title }}</h3>
+<h3>Director: {{ film.director }}</h3>
+<h3>Year: {{ film.year|date:"Y" }}</h3>
+
+<h3>Film description:</h3>
+<p> 
+    <h5>   
     {{ film.description }}
+    </h5>
 </p>      
 
 
 <hr>
         
-{% for comment in page_obj  %}
+{% for review in page_obj  %}
 {% include 'includes/author_date_post.html' %} 
 {% if not forloop.last %}<hr>{% endif %}
 {% endfor %}

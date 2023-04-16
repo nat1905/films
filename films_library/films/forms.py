@@ -2,16 +2,16 @@
 """
 from django import forms
 
-from .models import Comment, Film
+from .models import Review, Film
 
 
-class CommentForm(forms.ModelForm):
+class ReviewForm(forms.ModelForm):
     class Meta:
-        model = Comment
+        model = Review
         fields = ('text', 'film')
         labels = {
             'text': 'Text of the post',            
-            'film': 'Comment is about the film'
+            'film': 'Review is about the film'
         }
         
 
@@ -21,8 +21,8 @@ class FilmForm(forms.ModelForm):
         fields = ('title', 'director', 'year', 'description')
         labels = {
             'title': 'Film title',
-            'director': 'director  of the film', 
-            'year': 'year',           
+            'director': 'Director  of the film', 
+            'year': 'Year format: 2022-01-01',           
             'description' : 'Description of the film'
         }
         

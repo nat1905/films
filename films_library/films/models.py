@@ -16,13 +16,13 @@ class Film(models.Model):
         return self.title
 
 
-class Comment(models.Model):
+class Review(models.Model):
     text = models.TextField()
     pub_date = models.DateTimeField(auto_now_add=True)
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='comments'
+        related_name='reviews'
     )
     
     film = models.ForeignKey(
@@ -30,7 +30,7 @@ class Comment(models.Model):
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
-        related_name='comments'
+        related_name='reviews'
     )
 
     class Meta:

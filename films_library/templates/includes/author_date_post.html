@@ -1,10 +1,10 @@
 {% load static %}
 <ul>
     <li>
-    Author: {{ comment.author.username }}
+    Author: {{ review.author.username }}
     </li>
     <li>
-    Publcation date: {{ comment.pub_date|date:"d E Y" }}
+    Publcation date: {{ review.pub_date|date:"d E Y" }}
     </li>
 </ul>
-<p>{{ comment.text }}</p>
+<p>{{ review.text }}</p>

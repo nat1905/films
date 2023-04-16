@@ -4,19 +4,19 @@
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
 {{ content }}
-{% for comment in page_obj %}
+{% for review in page_obj %}
 {% include 'includes/author_date_post.html' %}  
  
 
-  {% if comment.film %}   
-    <a href="{% url 'films:film_list' comment.film.pk %}">
-      #{{ comment.film.title }}
+  {% if review.film %}   
+    <a href="{% url 'films:film_list' review.film.pk %}">
+      #{{ review.film.title }}
     </a>
   {% endif %}
 
   <p>
-    <a href="{% url 'films:comment_detail' comment.pk %}">
-      подробная информация
+    <a href="{% url 'films:review_detail' review.pk %}">
+      Review details
     </a>
   </p>
 {% if not forloop.last %}<hr>{% endif %}
