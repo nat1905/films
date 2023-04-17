@@ -16,5 +16,10 @@ urlpatterns = [
     
     path('film_create/', views.film_create, name='film_create'),
     path('films/', views.films, name='films'),
+    path(
+        'reviews/<int:review_id>/comment/',
+        views.add_comment,
+        name='add_comment'
+    ),
     
 ]

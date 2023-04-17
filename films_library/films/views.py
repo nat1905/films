@@ -4,8 +4,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import FilmForm, ReviewForm
-from .models import Film, Review, User
+from .forms import FilmForm, ReviewForm, CommentForm
+from .models import Film, Review, User, Comment
 
 
 PAGES_NUMBER = 10
@@ -96,14 +96,15 @@ def profile(request, username):
 def review_detail(request, review_id):
     """Review page.
     """
-    review = get_object_or_404(Review, pk=review_id)
-    num_reviews = Review.objects.filter(author__username=review.author).count()
+    review = get_object_or_404(Review, pk=review_id)    
     author_equel_user = user_author(request, review.author)
-
+    form = CommentForm()
+    comments = review.comments.all()
     context = {
-        'review': review,
-        'num_review_list': num_reviews,
-        'author_equel_user': author_equel_user
+        'review': review,        
+        'author_equel_user': author_equel_user,
+        'form': form,
+        'comments': comments,        
     }
     return render(request, 'films/review_detail.html', context)
 
@@ -124,12 +125,24 @@ def review_create(request):
 def film_create(request):
     """Film create page.
     """
-    form = FilmForm(request.POST or None)
+    form = FilmForm(request.POST or None, files=request.FILES or None)
     if not form.is_valid():
         return render(request, 'films/film_create.html', {'form': form})
     film = form.save(commit=False) 
     film.author = request.user   
     film.save()
     return redirect('films:profile', film.author.username)
+
+@login_required
+def add_comment(request, review_id):
+    """Add comment to review."""
+    review = get_object_or_404(Review, id=review_id)
+    form = CommentForm(request.POST or None)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.author = request.user
+        comment.review = review
+        comment.save()
+    return redirect('films:review_detail', review_id=review_id)
 
 

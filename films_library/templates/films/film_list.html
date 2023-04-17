@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load thumbnail %}
 {% load static %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
@@ -8,6 +9,9 @@
 <h3>Title: {{ film.title }}</h3>
 <h3>Director: {{ film.director }}</h3>
 <h3>Year: {{ film.year|date:"Y" }}</h3>
+{% thumbnail film.image_film "140x140" crop="center" as im %}
+          <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+{% endthumbnail %}
 
 <h3>Film description:</h3>
 <p> 

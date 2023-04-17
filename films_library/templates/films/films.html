@@ -1,5 +1,6 @@
 <!-- templates/posts/group_list.html -->
 {% extends 'base.html' %}
+{% load thumbnail %}
 {% load static %}
 {% block title %}{{ title }}{% endblock %}
 {% block content %}
@@ -7,6 +8,10 @@
 {% for film in page_obj %}
 <p>{{ film.title }}.</p>
 <p>{{ film.director }}.</p>
+
+{% thumbnail film.image_film "140x140" crop="center" as im %}
+          <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+{% endthumbnail %}
   
   <p>
     <a href="{% url 'films:film_list' film.pk %}">
