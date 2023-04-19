@@ -34,12 +34,16 @@ INSTALLED_APPS = [
     'films.apps.FilmsConfig',
     'users.apps.UsersConfig',
     'core.apps.CoreConfig',
+    'api.apps.ApiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'drf_yasg',
     'sorl.thumbnail',
 ]
 
@@ -130,4 +134,15 @@ LOGIN_REDIRECT_URL = 'films:index'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+
 
