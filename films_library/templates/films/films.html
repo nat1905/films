@@ -6,8 +6,9 @@
 {% block content %}
 {{ content }}
 {% for film in page_obj %}
-<p>{{ film.title }}.</p>
-<p>{{ film.director }}.</p>
+<h3>Title: {{ film.title }}</h3>
+<h3>Director: {{ film.director }}</h3>
+<h3>Year: {{ film.year|date:"Y" }}</h3>
 
 {% thumbnail film.image_film "140x140" crop="center" as im %}
           <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">

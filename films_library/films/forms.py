@@ -10,7 +10,7 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = ('text', 'film')
         labels = {
-            'text': 'Text of the post',            
+            'text': 'Text of the review',            
             'film': 'Review is about the film'
         }
         
